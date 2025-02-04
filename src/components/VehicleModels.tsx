@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {ModelCard} from '@app/src/components/ModelCard';
-import {VehicleModel} from '@app/app/types/types';
+import {VehicleModel} from '@app/src/types/types';
 
 interface Props {
   models: VehicleModel[];

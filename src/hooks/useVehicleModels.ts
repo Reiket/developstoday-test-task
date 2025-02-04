@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
-import {fetchVehicleModels} from '@app/app/lib/api';
-import {VehicleModel} from '@app/app/types/types';
+import {fetchVehicleModels} from '@app/src/lib/api';
+import {VehicleModel} from '@app/src/types/types';
 
 export function useVehicleModels(makeId: string, year: string) {
   const [models, setModels] = useState<VehicleModel[]>([]);

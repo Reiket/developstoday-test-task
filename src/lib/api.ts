@@ -1,4 +1,4 @@
-import {Make} from "@app/app/types/types";
+import {Make} from "@app/src/types/types";
 
 export const fetchMakes = async (): Promise<Make[]> => {
     try {
@@ -13,7 +13,7 @@ export const fetchMakes = async (): Promise<Make[]> => {
     }
 };
 
-export async function fetchVehicleModels(makeId: string | Array<string> | undefined, year: string | Array<string> | undefined) {
+export async function fetchVehicleModels(makeId: string, year: string) {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_API_URL}/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`

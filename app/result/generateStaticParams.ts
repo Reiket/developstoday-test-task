@@ -1,4 +1,4 @@
-import {fetchMakes} from "@app/app/lib/api";
+import {fetchMakes} from "@app/src/lib/api";
 
 export async function generateStaticParams() {
     const makes = await fetchMakes();

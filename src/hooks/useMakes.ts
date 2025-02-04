@@ -1,7 +1,7 @@
 // src/hooks/useMakes.ts
 import {useEffect, useState} from 'react';
-import {Make} from '@app/app/types/types';
-import {fetchMakes} from '@app/app/lib/api';
+import {Make} from '@app/src/types/types';
+import {fetchMakes} from '@app/src/lib/api';
 
 export const fetchMakesData = async () => {
   return await fetchMakes();
