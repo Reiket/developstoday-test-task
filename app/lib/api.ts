@@ -3,7 +3,7 @@ import {Make} from "@app/app/types/types";
 export const fetchMakes = async (): Promise<Make[]> => {
     try {
         const response = await fetch(
-            "https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json"
+            `${process.env.NEXT_PUBLIC_API_URL}/GetMakesForVehicleType/car?format=json`
         );
         const data = await response.json();
         return data.Results;
@@ -13,10 +13,10 @@ export const fetchMakes = async (): Promise<Make[]> => {
     }
 };
 
-export async function fetchVehicleModels(makeId: string | null, year: string | null) {
+export async function fetchVehicleModels(makeId: string | Array<string> | undefined, year: string | Array<string> | undefined) {
     try {
         const res = await fetch(
-            `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`
+            `${process.env.NEXT_PUBLIC_API_URL}/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`
         );
         const data = await res.json();
 

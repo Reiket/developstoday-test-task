@@ -1,7 +1,8 @@
 "use client";
-import {useState} from "react";
-import {FilterForm} from "@app/src/components/FilterForm";
+import {lazy, Suspense, useState} from "react";
 import {useMakes} from "@app/src/hooks/useMakes";
+import {Loader} from "@app/src/ui-kits/Loader";
+const FilterForm = lazy(() => import("@app/src/components/FilterForm"));
 
 export default function FilterPage() {
     const [selectedMake, setSelectedMake] = useState<string>("");
@@ -22,15 +23,16 @@ export default function FilterPage() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-dark-100 p-6">
             <h1 className="text-2xl font-bold mb-4">Select Vehicle Make and Model Year</h1>
-
-            <FilterForm
-                makes={makeOptions}
-                years={yearOptions}
-                selectedMake={selectedMake}
-                selectedYear={selectedYear}
-                onMakeChange={setSelectedMake}
-                onYearChange={setSelectedYear}
-            />
+            <Suspense fallback={<Loader />}>
+                <FilterForm
+                    makes={makeOptions}
+                    years={yearOptions}
+                    selectedMake={selectedMake}
+                    selectedYear={selectedYear}
+                    onMakeChange={setSelectedMake}
+                    onYearChange={setSelectedYear}
+                />
+            </Suspense>
         </div>
     );
 }
