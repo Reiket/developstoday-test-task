@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Vehicle Models Application
 
-First, run the development server:
+This is a web application that allows users to select a vehicle make and model year, then fetch and display vehicle models for the selected make and year. The application uses data from the [NHTSA API](https://vpic.nhtsa.dot.gov/api/).
+
+## Features
+
+- **Search for Vehicle Makes**: Select a vehicle make from a list.
+- **Select Model Year**: Choose a model year for the selected make.
+- **Fetch Vehicle Models**: Displays a list of available vehicle models for the selected make and model year.
+- **Error Handling**: Displays error messages when the data fetch fails.
+- **Loader**: Displays a loading spinner while waiting for the data.
+
+## Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- **Node.js** (version 16 or higher)
+- **npm** (Node Package Manager)
+- **Git** (for version control)
+
+## Setup
+
+### 1. Clone the repository
+
+Clone this repository to your local machine using Git:
+
+```bash
+git clone https://github.com/yourusername/vehicle-models-app.git
+```
+
+### 2. Install dependencies
+
+Navigate to the project folder and install the necessary dependencies using npm:
+
+```bash
+cd vehicle-models-app
+npm install
+```
+
+### 3. Set up environment variables
+
+Create a `.env.local` file in the root of the project and add the following environment variable to it:
+```plaintext
+NEXT_PUBLIC_API_URL=<YOUR_API_URL_HERE>
+```
+
+
+### 4. Start the development server
+
+Once all dependencies are installed, you can start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This will start the application, and you can view it in your browser at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 5. Build the application
+
+To build the application for production, run:
+
+```bash
+npm run build
+```
+
+This will create an optimized production build.
+
+### 6. Run the production build
+
+To start the application in production mode, use:
+
+```bash
+npm start
+```
+
+The app will run on `http://localhost:3000`.
+
+
+### 6. Run the dev mode
+
+To start the application in dev mode, use:
+
+```bash
+npm run dev
+```
+
+The app will run on `http://localhost:3000`.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+API Endpoints
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+NEXT_PUBLIC_API_URL=https://vpic.nhtsa.dot.gov/api/vehicles
 
-## Deploy on Vercel
+Get Makes for Vehicle Type: Retrieves a list of vehicle makes based on a specified vehicle type.
+Endpoint: /GetMakesForVehicleType/car?format=json
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Get Models for Make and Year: Retrieves vehicle models based on a specific make and model year.
+Endpoint: /GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+### Main Folders and Their Purpose
+
+#### 1. `app/`
+This folder contains the core business logic of the project as well as utilities used across different parts of the application.
+- **`page.tsx`**: This main page in our project (Filter Page).
+- **`result/`**: This folder contains the Result Page.
+
+#### 2. `src/`
+This folder contains the main application logic, including components, hooks, and UI interfaces.
+
+- **`components/`**: Contains all UI components used in the application. Components can be either functional or class-based and are responsible for rendering the user interface.
+- **`lib/`**: Contains various libraries and utilities that provide general functionality for the project, such as price formatting, discount calculations, etc.
+- **`types/`**: This folder holds TypeScript types that are used throughout the project to ensure type safety. It provides type definitions for various entities used in the application.
+- **`hooks/`**: This folder holds custom React hooks that manage specific application logic:
+  - **`useMakes/`**: A hook for fetching or processing data related to car makes.
+  - **`useVehicleModel/`**: A hook for handling car model data.
+- **`ui-kits/`**: Contains reusable UI components, such as buttons, forms, modals, etc. These components are designed to be used throughout the project to maintain a consistent UI design.
+
+
+
